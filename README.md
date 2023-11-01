@@ -16,6 +16,8 @@
 + Xem tổng giá trị đơn hàng(Khách hàng)
 + Ghi chú cho cửa hàng (Khách hàng)
 + Chọn địa chỉ nhận hàng (Khách hàng)
++ Thanh toán bằng thẻ ATM(Khách hàng)
++ Thanh toán khi nhận hàng (Khách hàng)
 + Xem chi tiết đơn hàng (chủ quán)
 + Nhận đơn từ khách hàng (Chủ quán)
 + Từ chối đơn đặt món từ khách hàng (Chủ quán)
