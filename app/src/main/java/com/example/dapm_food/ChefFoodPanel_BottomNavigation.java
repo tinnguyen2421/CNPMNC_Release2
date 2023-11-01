@@ -91,7 +91,7 @@ public class ChefFoodPanel_BottomNavigation extends AppCompatActivity implements
                 break;
             case R.id.chefProfile:
                 fragment = new ChefProfileFragment();
-                //break;
+                break;
         }
         return loadcheffragment(fragment);
     }

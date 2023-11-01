@@ -1,4 +1,4 @@
-
+package com.example.dapm_food.ChefFoodPanel;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,18 +8,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
-
-
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dapm_food.Chef;
-import com.example.dapm_food.ChefFoodPanel.ChefhomeAdapter;
-import com.example.dapm_food.ChefFoodPanel.UpdateDishModel;
 import com.example.dapm_food.MainMenu;
 import com.example.dapm_food.R;
 import com.google.firebase.auth.FirebaseAuth;
