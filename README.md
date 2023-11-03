@@ -10,6 +10,7 @@ Release 2
 + Chỉnh sửa thông tin cá nhân (Khách hàng)
 +	Tìm kiếm các món ăn (Khách hàng) 
 + Xem chi tiết món ăn( Khách hàng)
++ Xóa món ăn(Khách hàng)
 + Chọn món ăn để đưa vào giỏ hàng (Khách hàng)
 + Thêm món ăn(Chủ quán)
 + Xóa món ăn(Chủ quán)
