@@ -30,62 +30,55 @@ import java.util.HashMap;
 public class DeliveryRegisteration extends AppCompatActivity {
 
     String[] TP_HCM = {"Q1", "Q2", "Q3","Q4","Q5","Q6","Q7","Q8","Q9","Q10","Q11","Q12","Q.TânBình","Q.BìnhTân","Q.PhúNhuận","Q.BìnhThạnh"};
-    String[] TP_HàNội = {"Q.HoànKiếm", "Q.BaĐình", "Q.ĐốngĐa"};
-    String[] TiềnGiang = {"H.ChợGạo", "H.TânPhúĐông", "H.GòCông"};
+    String[] TP_HàNội = {"Q_HoànKiếm", "Q.BaĐình", "Q_ĐốngĐa"};
+    String[] TiềnGiang = {"H_ChợGạo", "H_TânPhúĐông", "H_GòCông"};
 
 
-    String[] Q1 = {"P. Bến Nghé", "P.Bến Thành", "P.Cô Giang", "P.Cầu Kho", "P.Cầu Ông Lãnh", "P.Nguyễn Cư Trinh", "P.Nguyễn Thái Bình", "P.Phạm Ngũ Lão",
-            "P.Tân Định", "P.Đa Kao"};
+    String[] Q1 = {"P_BếnNghé", "P_BếnThành", "P_CôGiang", "P_CầuKho", "P_CầuÔngLãnh", "P_NguyễnCưTrinh", "P_NguyễnTháiBình", "P_PhạmNgũLão",
+            "P_TânĐịnh", "P_ĐaKao"};
 
 
-    String[] Q2 = {"P.An Khánh", "P.An Lợi Đông", " P.An Phú", "P.Bình An", "P.Bình Khánh","P.Bình Trưng Đông","P.Bình Trưng Tây","P.Cát Lái","P.Thạnh Mỹ Lợi","P.Thảo Điền","P.Thủ Thiêm"};
-    String[] Q3 = {"P.1", "P.2", "P.3", "P.4", "P.5", "P.9", "P.10", "P.11", "P.12", "P.13", "P.14"};
+    String[] Q2 = {"P_AnKhánh", "P_AnLợiĐông", " P_AnPhú", "P_BìnhAn", "P_BìnhKhánh","P_BìnhTrưngĐông","P_BìnhTrưngTây","P_CátLái","P_ThạnhMỹLợi","P_ThảoĐiền","P_ThủThiêm"};
+    String[] Q3 = {"P_1", "P_2", "P_3", "P_4", "P_5", "P_9", "P_10", "P_11", "P_12", "P_13", "P_14"};
 
-    TextInputLayout Fname, Lname, Email, Pass, cfpass, mobileno, houseno, area, postcode;
+    TextInputLayout Fname, Lname, Pass, cfpass, mobileno, houseno, area, postcode, Email;
     Spinner statespin, Cityspin, Suburban;
     Button signup, Emaill, Phone;
     CountryCodePicker Cpp;
-    FirebaseAuth FAuth;
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
-    String fname;
-    String lname;
-    String emailid;
-    String password;
-    String confirmpassword;
-    String mobile;
-    String house;
-    String Area;
-    String Postcode;
+    FirebaseAuth FAuth;
     String role = "DeliveryPerson";
-    String statee;
-    String cityy;
-    String suburban;
+    String statee, cityy, suburban, fname, lname, mobile, confirmpassword, password, Area, Postcode, house, emailid;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chef_registeration);
+        setContentView(R.layout.activity_delivery_registeration);
 
-        Fname = (TextInputLayout) findViewById(R.id.Firstname);
-        Lname = (TextInputLayout) findViewById(R.id.Lastname);
-        Email = (TextInputLayout) findViewById(R.id.Email);
-        Pass = (TextInputLayout) findViewById(R.id.Pwd);
-        cfpass = (TextInputLayout) findViewById(R.id.Cpass);
-        mobileno = (TextInputLayout) findViewById(R.id.Mobileno);
-        houseno = (TextInputLayout) findViewById(R.id.houseNo);
-        area = (TextInputLayout) findViewById(R.id.Area);
-        postcode = (TextInputLayout) findViewById(R.id.Postcode);
-        statespin = (Spinner) findViewById(R.id.Statee);
-        Cityspin = (Spinner) findViewById(R.id.Citys);
-        Suburban = (Spinner) findViewById(R.id.Suburban);
-        signup = (Button) findViewById(R.id.Signup);
-        Emaill = (Button) findViewById(R.id.emaill);
-        Phone = (Button) findViewById(R.id.phone);
-        Cpp = (CountryCodePicker) findViewById(R.id.CountryCode);
+        Fname = (TextInputLayout) findViewById(R.id.fname);
+        Lname = (TextInputLayout) findViewById(R.id.lname);
+        Pass = (TextInputLayout) findViewById(R.id.password);
+        Email = (TextInputLayout) findViewById(R.id.Emailid);
+        cfpass = (TextInputLayout) findViewById(R.id.confirmpassword);
+        mobileno = (TextInputLayout) findViewById(R.id.mobileno);
+        houseno = (TextInputLayout) findViewById(R.id.Houseno);
+        area = (TextInputLayout) findViewById(R.id.Areaa);
+        postcode = (TextInputLayout) findViewById(R.id.Postcodee);
+        statespin = (Spinner) findViewById(R.id.State);
+        Cityspin = (Spinner) findViewById(R.id.City);
+        Emaill = (Button) findViewById(R.id.emaillid);
+        Suburban = (Spinner) findViewById(R.id.suburban);
+        signup = (Button) findViewById(R.id.Signupp);
+        Phone = (Button) findViewById(R.id.Phonenumber);
+        Cpp = (CountryCodePicker) findViewById(R.id.ctrycode);
         Cpp.setDefaultCountryUsingNameCode("VN");
         Cpp.resetToDefaultCountry();
+        final ProgressDialog mDialog = new ProgressDialog(DeliveryRegisteration.this);
+        mDialog.setCancelable(false);
+        mDialog.setCanceledOnTouchOutside(false);
+
 
         statespin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -172,6 +165,32 @@ public class DeliveryRegisteration extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Object value = parent.getItemAtPosition(position);
                 suburban = value.toString().trim();
+                if (suburban.equals("P_BếnNghé")) {
+                    ArrayList<String> listt = new ArrayList<>();
+                    for (String text : Q1) {
+                        listt.add(text);
+                    }
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(DeliveryRegisteration.this, android.R.layout.simple_spinner_item, listt);
+                    Suburban.setAdapter(arrayAdapter);
+                }
+
+                if (Suburban.equals("P_AnKhánh")) {
+                    ArrayList<String> listt = new ArrayList<>();
+                    for (String text : Q2) {
+                        listt.add(text);
+                    }
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(DeliveryRegisteration.this, android.R.layout.simple_spinner_item, listt);
+                    Suburban.setAdapter(arrayAdapter);
+                }
+
+                if (Suburban.equals("P_1")) {
+                    ArrayList<String> listt = new ArrayList<>();
+                    for (String text : Q3) {
+                        listt.add(text);
+                    }
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(DeliveryRegisteration.this, android.R.layout.simple_spinner_item, listt);
+                    Suburban.setAdapter(arrayAdapter);
+                }
             }
 
             @Override
@@ -179,10 +198,8 @@ public class DeliveryRegisteration extends AppCompatActivity {
 
             }
         });
-
         databaseReference = firebaseDatabase.getInstance().getReference("DeliveryPerson");
         FAuth = FirebaseAuth.getInstance();
-
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,21 +207,18 @@ public class DeliveryRegisteration extends AppCompatActivity {
 
                 fname = Fname.getEditText().getText().toString().trim();
                 lname = Lname.getEditText().getText().toString().trim();
-                emailid = Email.getEditText().getText().toString().trim();
                 mobile = mobileno.getEditText().getText().toString().trim();
+                emailid = Email.getEditText().getText().toString().trim();
                 password = Pass.getEditText().getText().toString().trim();
                 confirmpassword = cfpass.getEditText().getText().toString().trim();
                 Area = area.getEditText().getText().toString().trim();
                 house = houseno.getEditText().getText().toString().trim();
                 Postcode = postcode.getEditText().getText().toString().trim();
 
-
                 if (isValid()) {
 
-                    final ProgressDialog mDialog = new ProgressDialog(DeliveryRegisteration.this);
-                    mDialog.setCancelable(false);
-                    mDialog.setCanceledOnTouchOutside(false);
-                    mDialog.setMessage("Đang đăng kí, vui lòng đợi !");
+
+                    mDialog.setMessage("Đang đăng kí! Vui lòng đợi...");
                     mDialog.show();
 
                     FAuth.createUserWithEmailAndPassword(emailid, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -213,7 +227,7 @@ public class DeliveryRegisteration extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 String useridd = FirebaseAuth.getInstance().getCurrentUser().getUid();
                                 databaseReference = FirebaseDatabase.getInstance().getReference("User").child(useridd);
-                                final HashMap<String,String> hashMap = new HashMap<>();
+                                final HashMap<String, String> hashMap = new HashMap<>();
                                 hashMap.put("Role", role);
                                 databaseReference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
 
@@ -232,46 +246,44 @@ public class DeliveryRegisteration extends AppCompatActivity {
                                         hashMappp.put("Postcode", Postcode);
                                         hashMappp.put("State", statee);
                                         hashMappp.put("Suburban", suburban);
-                                        firebaseDatabase.getInstance().getReference("DeliveryPerson")
-                                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                                .setValue(hashMappp).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        firebaseDatabase.getInstance().getReference("DeliveryPerson").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(hashMappp).addOnCompleteListener(new OnCompleteListener<Void>() {
 
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                mDialog.dismiss();
+
+                                                FAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> task) {
-                                                        mDialog.dismiss();
+                                                        if (task.isSuccessful()) {
+                                                            AlertDialog.Builder builder = new AlertDialog.Builder(DeliveryRegisteration.this);
+                                                            builder.setMessage("Đăng kí thành công ! Vui lòng xác nhận email của bạn");
+                                                            builder.setCancelable(false);
+                                                            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                                                @Override
+                                                                public void onClick(DialogInterface dialog, int which) {
 
-                                                        FAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                            @Override
-                                                            public void onComplete(@NonNull Task<Void> task) {
-                                                                if (task.isSuccessful()) {
-                                                                    AlertDialog.Builder builder = new AlertDialog.Builder(DeliveryRegisteration.this);
-                                                                    builder.setMessage("Đăng kí thành công, hãy xác nhận email của bạn");
-                                                                    builder.setCancelable(false);
-                                                                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                                                        @Override
-                                                                        public void onClick(DialogInterface dialog, int which) {
+                                                                    dialog.dismiss();
 
-                                                                            dialog.dismiss();
-
-                                                                            String phonenumber = Cpp.getSelectedCountryCodeWithPlus() + mobile;
-                                                                            Intent b = new Intent(DeliveryRegisteration.this, ChefVerifyPhone.class);
-                                                                            b.putExtra("phonenumber", phonenumber);
-                                                                            startActivity(b);
-
-                                                                        }
-                                                                    });
-                                                                    AlertDialog alert = builder.create();
-                                                                    alert.show();
-
-                                                                } else {
-                                                                    mDialog.dismiss();
-                                                                    ReusableCodeForAll.ShowAlert(DeliveryRegisteration.this, "Error", task.getException().getMessage());
+                                                                    String phonenumber = Cpp.getSelectedCountryCodeWithPlus() + mobile;
+                                                                    Intent b = new Intent(DeliveryRegisteration.this, DeliveryVerifyPhone.class);
+                                                                    b.putExtra("phonenumber", phonenumber);
+                                                                    startActivity(b);
 
                                                                 }
-                                                            }
-                                                        });
+                                                            });
+                                                            AlertDialog alert = builder.create();
+                                                            alert.show();
+
+                                                        } else {
+                                                            mDialog.dismiss();
+                                                            ReusableCodeForAll.ShowAlert(DeliveryRegisteration.this, "Lỗi", task.getException().getMessage());
+
+                                                        }
                                                     }
                                                 });
+                                            }
+                                        });
                                     }
                                 });
 
@@ -284,19 +296,8 @@ public class DeliveryRegisteration extends AppCompatActivity {
                         }
                     });
 
+
                 }
-
-            }
-
-        });
-
-        Emaill.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent i = new Intent(DeliveryRegisteration.this, ChefLoginEmail.class);
-                startActivity(i);
-                finish();
             }
         });
 
@@ -304,8 +305,17 @@ public class DeliveryRegisteration extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent e = new Intent(DeliveryRegisteration.this, Chefloginphone.class);
+                Intent e = new Intent(DeliveryRegisteration.this, DeliveryLoginPhone.class);
                 startActivity(e);
+                finish();
+            }
+        });
+
+        Emaill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(DeliveryRegisteration.this, DeliveryLoginEmail.class);
+                startActivity(a);
                 finish();
             }
         });
@@ -316,10 +326,10 @@ public class DeliveryRegisteration extends AppCompatActivity {
     String emailpattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
     public boolean isValid() {
-        Email.setErrorEnabled(false);
-        Email.setError("");
         Fname.setErrorEnabled(false);
         Fname.setError("");
+        Email.setErrorEnabled(false);
+        Email.setError("");
         Lname.setErrorEnabled(false);
         Lname.setError("");
         Pass.setErrorEnabled(false);
@@ -335,49 +345,72 @@ public class DeliveryRegisteration extends AppCompatActivity {
         postcode.setErrorEnabled(false);
         postcode.setError("");
 
-        boolean isValidname = false, isValidemail = false, isvalidpassword = false, isvalidconfirmpassword = false, isvalid = false, isvalidmobileno = false, isvalidlname = false, isvalidhousestreetno = false, isvalidarea = false, isvalidpostcode = false;
+        boolean isValidname = false, isvalidpassword = false, isValidemail = false, isvalidconfirmpassword = false, isvalid = false, isvalidmobileno = false, isvalidlname = false, isvalidhousestreetno = false, isvalidarea = false, isvalidpostcode = false;
         if (TextUtils.isEmpty(fname)) {
             Fname.setErrorEnabled(true);
-            Fname.setError("Họ và tên lót của bạn không được để trống");
+            Fname.setError("Họ và tên lót không được để trống");
         } else {
-            isValidname = true;
+            if (fname.length() > 30) {
+                Fname.setErrorEnabled(true);
+                Fname.setError("Họ và tên lót không vượt quá 30 ký tự");
+            } else if (fname.length() < 3){
+                Fname.setErrorEnabled(true);
+                Fname.setError("Họ và tên lót phải lớn hơn 3 ký tự");
+            }
+            else {
+                isvalidmobileno = true;
+            }
         }
         if (TextUtils.isEmpty(lname)) {
             Lname.setErrorEnabled(true);
-            Lname.setError("Tên của bạn không được để trống");
+            Lname.setError("Tên không được để trống");
         } else {
-            isvalidlname = true;
+            if (lname.length() > 30) {
+                Lname.setErrorEnabled(true);
+                Lname.setError("Tên không vượt quá 30 ký tự");
+            } else if (lname.length() < 3){
+                Lname.setErrorEnabled(true);
+                Lname.setError("Tên phải lớn hơn 3 ký tự");
+            }
+            else {
+                isvalidmobileno = true;
+            }
         }
         if (TextUtils.isEmpty(emailid)) {
             Email.setErrorEnabled(true);
-            Email.setError("Email không được để trống");
+            Email.setError("Email đang để trống");
         } else {
             if (emailid.matches(emailpattern)) {
                 isValidemail = true;
             } else {
                 Email.setErrorEnabled(true);
-                Email.setError("Hãy nhập địa chỉ chính xác !!!");
+                Email.setError("Nhập một địa chỉ có thực ");
             }
 
         }
+
         if (TextUtils.isEmpty(password)) {
             Pass.setErrorEnabled(true);
-            Pass.setError("Mật khẩu không được để trống ");
+            Pass.setError("Mật khẩu đang để trống");
         } else {
             if (password.length() < 6) {
                 Pass.setErrorEnabled(true);
-                Pass.setError("Mật khẩu quá yếu");
+                Pass.setError("Mật khẩu quá yếu ! Hãy nhặp mật khẩu lớn hơn 6 ký tự");
+            } else if (password.length() < 14) {
+                Pass.setErrorEnabled(true);
+                Pass.setError("Mật khẩu không được dài hơn 14 ký tự");
+
             } else {
                 isvalidpassword = true;
             }
         }
         if (TextUtils.isEmpty(confirmpassword)) {
             cfpass.setErrorEnabled(true);
-            cfpass.setError("Xác nhận mật khẩu không được để trống");
+            cfpass.setError("Mật khẩu không được để trống");
         } else {
             if (!password.equals(confirmpassword)) {
                 Pass.setErrorEnabled(true);
-                Pass.setError("Mật khẩu không khớp");
+                Pass.setError("Mật khẩu không khớp ");
             } else {
                 isvalidconfirmpassword = true;
             }
@@ -389,10 +422,13 @@ public class DeliveryRegisteration extends AppCompatActivity {
             if (mobile.length() < 10) {
                 mobileno.setErrorEnabled(true);
                 mobileno.setError("Số điện thoại không tồn tại");
-            } else {
-                isvalidmobileno = true;
+            } else if (mobile.length() > 11) {
+                mobileno.setErrorEnabled(true);
+                mobileno.setError("Số điện thoại không tồn tại");
             }
+            else {isvalidmobileno = true;}
         }
+
         if (TextUtils.isEmpty(house)) {
             houseno.setErrorEnabled(true);
             houseno.setError("Trường này không được để trống");
@@ -412,11 +448,9 @@ public class DeliveryRegisteration extends AppCompatActivity {
             isvalidpostcode = true;
         }
 
-        isvalid = (isValidname && isvalidpostcode && isvalidlname && isValidemail && isvalidconfirmpassword && isvalidpassword && isvalidmobileno && isvalidarea && isvalidhousestreetno) ? true : false;
+        isvalid = (isValidname && isvalidpostcode && isValidemail && isvalidlname && isvalidconfirmpassword && isvalidpassword && isvalidmobileno && isvalidarea && isvalidhousestreetno) ? true : false;
         return isvalid;
     }
-
-
 }
 
 

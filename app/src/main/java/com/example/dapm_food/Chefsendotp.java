@@ -1,5 +1,6 @@
 package com.example.dapm_food;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.TaskExecutors;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -56,7 +58,7 @@ public class Chefsendotp extends AppCompatActivity {
                 String code = entercode.getText().toString().trim();
 
                 if (code.isEmpty() && code.length() < 6) {
-                    entercode.setError("Enter code");
+                    entercode.setError("Vui lòng nhập đúng code");
                     entercode.requestFocus();
                     return;
                 }
@@ -68,7 +70,7 @@ public class Chefsendotp extends AppCompatActivity {
             @Override
             public void onTick(long millisUntilFinished) {
                 txt.setVisibility(View.VISIBLE);
-                txt.setText("Resend Code within " + millisUntilFinished / 1000 + " Seconds");
+                txt.setText("Gửi lại code sau " + millisUntilFinished / 1000 + " giây");
             }
 
             @Override
@@ -90,7 +92,7 @@ public class Chefsendotp extends AppCompatActivity {
                     @Override
                     public void onTick(long millisUntilFinished) {
                         txt.setVisibility(View.VISIBLE);
-                        txt.setText("Resend Code within " + millisUntilFinished / 1000 + " Seconds");
+                        txt.setText("Gửi lại code sau " + millisUntilFinished / 1000 + " giây");
                     }
 
                     @Override
@@ -127,22 +129,23 @@ public class Chefsendotp extends AppCompatActivity {
                             startActivity(intent);
                             finish();
                         } else {
-                            ReusableCodeForAll.ShowAlert(Chefsendotp.this, "Error", task.getException().getMessage());
+                            ReusableCodeForAll.ShowAlert(Chefsendotp.this, "Lỗi", task.getException().getMessage());
                         }
                     }
                 });
     }
 
-
+// het
     private void sendverificationcode(String number) {
 
-//        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-//                number,
-//                60,
-//                TimeUnit.SECONDS,
-//                TaskExecutors.MAIN_THREAD,
-//                mCallBack
-//        );
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                number,
+                60L,
+                TimeUnit.SECONDS,
+                (Activity) TaskExecutors.MAIN_THREAD,
+                mCallBack
+        );
+        //het
         PhoneAuthOptions options = PhoneAuthOptions.newBuilder(FirebaseAuth.getInstance())
                 .setPhoneNumber(number)
                 .setTimeout(60L, TimeUnit.SECONDS)

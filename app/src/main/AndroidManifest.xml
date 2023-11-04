@@ -25,22 +25,22 @@
             android:label="Pending Orders" />
         <activity android:name=".Delivery_FoodPanelBottomNavigation" />
         <activity
-            android:name=".Delivery_SendOtp"
+            android:name=".DeliverySendOtp"
             android:theme="@style/AppThemeNoActionbar" />
         <activity
-            android:name=".Delivery_ForgotPassword"
+            android:name=".DeliveryForgotPassword"
             android:theme="@style/AppThemeNoActionbar" />
         <activity
-            android:name=".Delivery_Login"
+            android:name=".DeliveryLoginEmail"
             android:theme="@style/AppThemeNoActionbar" />
         <activity
-            android:name=".Delivery_LoginPhone"
+            android:name=".DeliveryLoginPhone"
             android:theme="@style/AppThemeNoActionbar" />
         <activity
-            android:name=".Delivery_VerifyPhone"
+            android:name=".DeliveryVerifyPhone"
             android:theme="@style/AppThemeNoActionbar" />
         <activity
-            android:name=".Delivery_registeration"
+            android:name=".DeliveryRegisteration"
             android:theme="@style/AppThemeNoActionbar" />
         <activity
             android:name=".ChefFoodPanel.ChefPreparedOrderView"
@@ -50,10 +50,10 @@
             android:label="Prepared Orders" />
         <activity
             android:name=".ChefFoodPanel.ChefOrdertobePrepareView"
-            android:label="Orders to be Prepared" />
+            android:label="Đơn hàng cần chuẩn bị" />
         <activity
             android:name=".ChefFoodPanel.ChefOrderTobePrepared"
-            android:label="Orders to be Prepared" />
+            android:label="Đơn hàng cần chuẩn bị" />
         <activity
             android:name=".CustomerFoodPanel.CustomerPaymentOTP"
             android:label="Online Payment" />
@@ -71,26 +71,26 @@
             android:label="Pending Orders" />
         <activity
             android:name=".ChefFoodPanel.Chef_order_dishes"
-            android:label="Orders" />
+            android:label="Đơn hàng" />
         <activity
             android:name=".CustomerFoodPanel.CustomerPhoneSendOTP"
-            android:label="Mobile Number" />
+            android:label="Số điện thoại" />
         <activity
             android:name=".CustomerFoodPanel.CustomerPhonenumber"
-            android:label="Mobile Number" />
+            android:label="Số điện thoại" />
         <activity
-            android:name=".CustomerFoodPanel.CustomerForgotpassword"
-            android:label="Password" />
+            android:name=".CustomerFoodPanel.CustomerForgotPassword"
+            android:label="Mật khẩu" />
         <activity
             android:name=".CustomerFoodPanel.CustomerPassword"
-            android:label="Password" />
+            android:label="Mật khẩu" />
         <activity android:name=".CustomerFoodPanel.OrderDish" />
         <activity
             android:name=".ChefFoodPanel.Update_Delete_Dish"
-            android:label="Home" />
+            android:label="Trang chủ" />
         <activity
             android:name=".ChefFoodPanel.Chef_PostDish"
-            android:label="Post Dish" />
+            android:label="Đăng món" />
         <activity
             android:name=".ChefFoodPanel_BottomNavigation"
             android:windowSoftInputMode="adjustNothing" />
@@ -108,22 +108,22 @@
             android:name=".Chefloginphone"
             android:theme="@style/AppThemeNoActionbar" />
         <activity
-            android:name=".sendotp"
+            android:name=".CustomerSendOtp"
             android:theme="@style/AppThemeNoActionbar" />
         <activity
-            android:name=".LoginPhone"
+            android:name=".CustomerLoginPhone"
             android:theme="@style/AppThemeNoActionbar" />
         <activity
             android:name=".ChefVerifyPhone"
             android:theme="@style/AppThemeNoActionbar" />
         <activity
-            android:name=".VerifyPhone"
+            android:name=".CustomerVerifyPhone"
             android:theme="@style/AppThemeNoActionbar" />
         <activity
             android:name=".ChefForgotPassword"
             android:theme="@style/AppThemeNoActionbar" />
         <activity
-            android:name=".ChefLogin"
+            android:name=".ChefLoginEmail"
             android:theme="@style/AppThemeNoActionbar" />
         <activity
             android:name=".ChooseOne"
@@ -132,13 +132,13 @@
             android:name=".ChefRegisteration"
             android:theme="@style/AppThemeNoActionbar" />
         <activity
-            android:name=".ForgotPassword"
+            android:name=".CustomerForgotPassword"
             android:theme="@style/AppThemeNoActionbar" />
         <activity
-            android:name=".Login"
+            android:name=".CustomerLoginEmail"
             android:theme="@style/AppThemeNoActionbar" />
         <activity
-            android:name="com.example.dapm_food.Registeration"
+            android:name="com.example.dapm_food.CustomerRegisteration"
             android:theme="@style/AppThemeNoActionbar" />
         <activity
             android:name=".MainActivity"

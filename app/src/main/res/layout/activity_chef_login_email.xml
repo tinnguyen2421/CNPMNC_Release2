@@ -50,6 +50,7 @@
                 android:drawableLeft="@drawable/ic_email_black_24dp"
                 android:drawablePadding="10dp"
                 android:hint="Email"
+                android:background="@color/white"
                 android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -72,6 +73,7 @@
                 android:layout_height="wrap_content"
                 android:drawablePadding="10dp"
                 android:hint="Mật khẩu"
+                android:background="@color/white"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -162,8 +164,8 @@
 
         <Button
             android:id="@+id/btnphone"
-            android:layout_width="105dp"
-            android:layout_height="40dp"
+            android:layout_width="170dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginTop="12dp"
             android:background="@drawable/btnblueish"

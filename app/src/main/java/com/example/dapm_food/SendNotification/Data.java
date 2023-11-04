@@ -11,7 +11,6 @@ public class Data {
         Message = message;
         Typepage = typepage;
     }
-
     public Data() {
 
     }

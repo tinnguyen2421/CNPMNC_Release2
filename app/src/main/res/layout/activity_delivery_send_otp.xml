@@ -77,7 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="26dp"
-            android:background="@drawable/btnred"
+            android:background="@drawable/elegant_btnshape"
             android:text="Gửi lại"
             android:textColor="@color/white"
             android:textSize="18sp"

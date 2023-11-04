@@ -1,8 +1,5 @@
 package com.example.dapm_food;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -142,13 +140,13 @@ public class ChefLoginEmail extends AppCompatActivity {
                 isvalidemail = true;
             } else {
                 email.setErrorEnabled(true);
-                email.setError("Địa chỉ email không hợp lệ");
+                email.setError("Email không hợp lệ");
             }
 
         }
         if (TextUtils.isEmpty(pwd)) {
             pass.setErrorEnabled(true);
-            pass.setError("Mật khẩu quá yếu");
+            pass.setError("Mật khẩu không được để trống");
         } else {
             isvalidpassword = true;
         }

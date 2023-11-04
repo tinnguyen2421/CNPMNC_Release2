@@ -77,6 +77,7 @@ public class Chef_PostDish extends AppCompatActivity {
         pri = (TextInputLayout) findViewById(R.id.price);
         post_dish = (Button) findViewById(R.id.post);
         FAuth = FirebaseAuth.getInstance();
+
         databaseReference = firebaseDatabase.getInstance().getReference("FoodSupplyDetails");
 
         try {
@@ -112,6 +113,7 @@ public class Chef_PostDish extends AppCompatActivity {
                             }
                         }
                     });
+
                 }
 
                 @Override
@@ -137,24 +139,40 @@ public class Chef_PostDish extends AppCompatActivity {
         boolean isValiDescription = false, isValidPrice = false, isvalidQuantity = false, isvalid = false;
         if (TextUtils.isEmpty(description)) {
             desc.setErrorEnabled(true);
-            desc.setError("Description is Required");
-
+            desc.setError("Chi tiết món ăn không được để trống");
         } else {
-
             desc.setError(null);
             isValiDescription = true;
         }
         if (TextUtils.isEmpty(quantity)) {
             qty.setErrorEnabled(true);
-            qty.setError("Quantity is Required");
+            qty.setError("Số lượng không được để trống");
         } else {
-            isvalidQuantity = true;
+            double qtyy = Double.parseDouble(quantity);
+            if (qtyy > 1000) {
+                qty.setErrorEnabled(true);
+                qty.setError("Số lượng không vượt quá 1000 ");
+            } else if (qtyy <1){
+                qty.setErrorEnabled(true);
+                qty.setError("Số lượng không được nhỏ hơn 1 ");
+            }
+            else
+            {
+                isvalidQuantity = true;
+            }
         }
+
         if (TextUtils.isEmpty(price)) {
             pri.setErrorEnabled(true);
-            pri.setError("Price is Required");
+            pri.setError("Gía không được để trống");
         } else {
-            isValidPrice = true;
+            double priceValue = Double.parseDouble(price);
+            if (priceValue > 10000000) {
+                pri.setErrorEnabled(true);
+                pri.setError("Giá món ăn không được lớn hơn 10.000.000 vnđ");
+            } else {
+                isValidPrice = true;
+            }
         }
         isvalid = (isValiDescription && isvalidQuantity && isValidPrice) ? true : false;
 
@@ -186,7 +204,7 @@ public class Chef_PostDish extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     progressDialog.dismiss();
-                                    Toast.makeText(Chef_PostDish.this, "Dish posted successfully", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Chef_PostDish.this, "Đăng món thành công", Toast.LENGTH_SHORT).show();//Chuyển từ postdish sang home
                                 }
                             });
                         }
@@ -205,7 +223,7 @@ public class Chef_PostDish extends AppCompatActivity {
                 public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
 
                     double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-                    progressDialog.setMessage("Uploaded " + (int) progress + "%");
+                    progressDialog.setMessage("Tải lên " + (int) progress + "%");
                     progressDialog.setCanceledOnTouchOutside(false);
                 }
             });
@@ -241,9 +259,9 @@ public class Chef_PostDish extends AppCompatActivity {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
                 ((ImageButton) findViewById(R.id.imageupload)).setImageURI(result.getUri());
-                Toast.makeText(this, "Cropped Successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Cắt ảnh thành công", Toast.LENGTH_SHORT).show();
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                Toast.makeText(this, "Cropping failed" + result.getError(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Cắt ảnh thất bại" + result.getError(), Toast.LENGTH_SHORT).show();
             }
         }
 

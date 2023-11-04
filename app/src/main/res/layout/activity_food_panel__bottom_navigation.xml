@@ -21,6 +21,6 @@
         app:itemIconTint="@color/bottomcolour"
         app:itemTextColor="@color/bottomcolour"
         android:background="?android:attr/windowBackground"
-        app:menu="@menu/bottom_navigation"/>
+        app:menu="@menu/customer_bottom_navigation"/>
 
 </RelativeLayout>

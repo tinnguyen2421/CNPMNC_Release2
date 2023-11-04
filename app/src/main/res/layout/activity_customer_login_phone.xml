@@ -128,7 +128,7 @@
         <Button
             android:id="@+id/btnEmail"
             android:layout_width="105dp"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
             android:background="@drawable/btnred"

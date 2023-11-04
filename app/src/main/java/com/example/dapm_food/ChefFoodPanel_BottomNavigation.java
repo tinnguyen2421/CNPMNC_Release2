@@ -89,7 +89,7 @@ public class ChefFoodPanel_BottomNavigation extends AppCompatActivity implements
             case R.id.Orders:
                 fragment = new ChefOrderFragment();
                 break;
-            case R.id.chefProfile:
+            case R.id.ChefPostDish:
                 fragment = new ChefProfileFragment();
                 break;
         }

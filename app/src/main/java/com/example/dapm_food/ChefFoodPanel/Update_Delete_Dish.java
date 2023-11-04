@@ -118,15 +118,15 @@ public class Update_Delete_Dish extends AppCompatActivity {
 
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(Update_Delete_Dish.this);
-                        builder.setMessage("Are you sure you want to Delete Dish");
-                        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                        builder.setMessage("Bạn có chắc chắn muốn xóa món ăn này");
+                        builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
                                 firebaseDatabase.getInstance().getReference("FoodSupplyDetails").child(State).child(City).child(Sub).child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(ID).removeValue();
 
                                 AlertDialog.Builder food = new AlertDialog.Builder(Update_Delete_Dish.this);
-                                food.setMessage("Your Dish has been Deleted");
+                                food.setMessage("Món ăn của bạn đã được xóa");
                                 food.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
@@ -140,7 +140,7 @@ public class Update_Delete_Dish extends AppCompatActivity {
 
                             }
                         });
-                        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                        builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.cancel();
@@ -162,7 +162,7 @@ public class Update_Delete_Dish extends AppCompatActivity {
 
                         desc.getEditText().setText(updateDishModel.getDescription());
                         qty.getEditText().setText(updateDishModel.getQuantity());
-                        Dishname.setText("Dish name: " + updateDishModel.getDishes());
+                        Dishname.setText("Tên món: " + updateDishModel.getDishes());
                         dishes = updateDishModel.getDishes();
                         pri.getEditText().setText(updateDishModel.getPrice());
                         Glide.with(Update_Delete_Dish.this).load(updateDishModel.getImageURL()).into(imageButton);
@@ -208,24 +208,37 @@ public class Update_Delete_Dish extends AppCompatActivity {
         boolean isValiDescription = false, isValidPrice = false, isvalidQuantity = false, isvalid = false;
         if (TextUtils.isEmpty(description)) {
             desc.setErrorEnabled(true);
-            desc.setError("Description is Required");
+            desc.setError("Chi tiết về món ăn không được để trống");
 
-        } else {
-
+        }
+        if (description.length() > 40) {
+            desc.setErrorEnabled(true);
+            desc.setError("Chi tiết món ăn không vượt quá 40 ký tự");
+        } else if (description.length() < 1){
+            desc.setErrorEnabled(true);
+            desc.setError("Chi tiết món ăn không được ít hơn 1 ký tự");
+        }
+        else {
             desc.setError(null);
             isValiDescription = true;
         }
         if (TextUtils.isEmpty(quantity)) {
             qty.setErrorEnabled(true);
-            qty.setError("Quantity is Required");
+            qty.setError("Số lượng không được để trống");
         } else {
             isvalidQuantity = true;
         }
         if (TextUtils.isEmpty(price)) {
             pri.setErrorEnabled(true);
-            pri.setError("Price is Required");
+            pri.setError("Giá không được để trống");
         } else {
-            isValidPrice = true;
+            double priceValue = Double.parseDouble(price);
+            if (priceValue > 10000000) {
+                pri.setErrorEnabled(true);
+                pri.setError("Giá món ăn không được lớn hơn 10.000.000 vnđ");
+            } else {
+                isValidPrice = true;
+            }
         }
         isvalid = (isValiDescription && isvalidQuantity && isValidPrice) ? true : false;
 
@@ -237,7 +250,7 @@ public class Update_Delete_Dish extends AppCompatActivity {
 
         if (imageuri != null) {
 
-            progressDialog.setTitle("Uploading...");
+            progressDialog.setTitle("Đang tải...");
             progressDialog.show();
             RandomUId = UUID.randomUUID().toString();
             ref = storageReference.child(RandomUId);
@@ -256,14 +269,14 @@ public class Update_Delete_Dish extends AppCompatActivity {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     progressDialog.dismiss();
-                    Toast.makeText(Update_Delete_Dish.this, "Failed : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(Update_Delete_Dish.this, "Thất bại : " + e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
 
                     double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-                    progressDialog.setMessage("Uploaded " + (int) progress + "%");
+                    progressDialog.setMessage("tải lên " + (int) progress + "%");
                     progressDialog.setCanceledOnTouchOutside(false);
                 }
             });
@@ -279,7 +292,7 @@ public class Update_Delete_Dish extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 progressDialog.dismiss();
-                Toast.makeText(Update_Delete_Dish.this, "Dish Updated Successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Update_Delete_Dish.this, "Đăng món thành công", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -312,9 +325,9 @@ public class Update_Delete_Dish extends AppCompatActivity {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
                 ((ImageButton) findViewById(R.id.imageupload)).setImageURI(result.getUri());
-                Toast.makeText(this, "Cropped Successfully" + result.getSampleSize(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Cắt ảnh thành công" + result.getSampleSize(), Toast.LENGTH_SHORT).show();
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                Toast.makeText(this, "cropping failed" + result.getError(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Cắt ảnh thất bại" + result.getError(), Toast.LENGTH_SHORT).show();
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -329,7 +342,7 @@ public class Update_Delete_Dish extends AppCompatActivity {
         if (mCropimageuri != null && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             startCropImageActivity(mCropimageuri);
         } else {
-            Toast.makeText(this, "cancelling,required permission not granted", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Hủy bỏ , yêu cầu không được cấp phép", Toast.LENGTH_SHORT).show();
         }
     }
 

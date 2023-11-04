@@ -8,6 +8,7 @@
     android:background="@drawable/pic14">
 
 
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="280dp"
@@ -25,7 +26,7 @@
             android:layout_width="105dp"
             android:layout_height="30dp"
             android:layout_marginLeft="5dp"
-            android:text="Dish Name"
+            android:text="Tên Món:"
             android:textColor="@color/white"
             android:textSize="17dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -65,9 +66,12 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Description"
-            android:textColor="@color/white"
-            android:inputType="text" />
+            android:background="@color/white"
+            android:hint="Chi tiết món ăn:"
+            android:textColorHint="@color/black"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:textColorHighlight="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -85,8 +89,10 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Quantity"
-            android:textColor="@color/white"
+            android:hint="Số lượng"
+            android:background="@color/white"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
             android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -105,8 +111,10 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Price"
-            android:textColor="@color/white"
+            android:hint="Giá"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -115,15 +123,15 @@
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:background="@drawable/btnred"
-        android:text="Post"
+        android:text="Đăng món"
         android:textColor="@color/white"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/price"
-        app:layout_constraintVertical_bias="0.348"
-        android:textSize="20sp"/>
+        app:layout_constraintVertical_bias="0.349" />
 
     <ImageButton
         android:id="@+id/imageupload"

@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginLeft="5dp"
-            android:text="Dish Name"
+            android:text="Tên món ăn "
             android:textColor="@color/Black"
             android:textSize="17dp" />
 
@@ -61,7 +61,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Description"
+            android:hint="Chi tiết"
+            android:background="@color/white"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -81,7 +82,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Quantity"
+            android:hint="Số lượng"
+            android:background="@color/white"
             android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -101,7 +103,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Price"
+            android:hint="Gía"
+            android:background="@color/white"
             android:inputType="number" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -121,23 +124,23 @@
         <Button
             android:id="@+id/Updatedish"
             android:layout_width="95dp"
-            android:layout_height="40dp"
+            android:layout_height="70dp"
             android:layout_gravity="center"
             android:background="@drawable/btnred"
             android:padding="10dp"
-            android:text="Update"
+            android:text="Cập nhật"
             android:textColor="@color/white" />
 
         <Button
             android:id="@+id/Deletedish"
             android:layout_width="97dp"
-            android:layout_height="40dp"
+            android:layout_height="70dp"
             android:layout_gravity="center"
             android:layout_marginLeft="30dp"
-            android:background="@drawable/button_shape"
+            android:background="@drawable/btnred"
             android:drawablePadding="5dp"
             android:padding="10dp"
-            android:text="Delete"
+            android:text="Xóa"
             android:textColor="@color/white" />
 
     </LinearLayout>

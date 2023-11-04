@@ -58,7 +58,7 @@ public class ChefVerifyPhone extends AppCompatActivity {
                 Resend.setVisibility(View.INVISIBLE);
 
                 if (code.isEmpty() && code.length() < 6) {
-                    entercode.setError("Enter code");
+                    entercode.setError("Vui lòng nhập đúng code");
                     entercode.requestFocus();
                     return;
                 }
@@ -70,7 +70,7 @@ public class ChefVerifyPhone extends AppCompatActivity {
             @Override
             public void onTick(long millisUntilFinished) {
                 txt.setVisibility(View.VISIBLE);
-                txt.setText("Resend Code within " + millisUntilFinished / 1000 + " Seconds");
+                txt.setText("Gửi lại Code sau " + millisUntilFinished / 1000 + " giây");
             }
 
             @Override
@@ -92,7 +92,7 @@ public class ChefVerifyPhone extends AppCompatActivity {
                     @Override
                     public void onTick(long millisUntilFinished) {
                         txt.setVisibility(View.VISIBLE);
-                        txt.setText("Resend Code within " + millisUntilFinished / 1000 + " Seconds");
+                        txt.setText("Gửi lại code sau " + millisUntilFinished / 1000 + " giây");
                     }
 
                     @Override
@@ -133,7 +133,7 @@ public class ChefVerifyPhone extends AppCompatActivity {
 
 
                         } else {
-                            ReusableCodeForAll.ShowAlert(ChefVerifyPhone.this,"Error",task.getException().getMessage());
+                            ReusableCodeForAll.ShowAlert(ChefVerifyPhone.this,"Lỗi",task.getException().getMessage());
                         }
                     }
                 });

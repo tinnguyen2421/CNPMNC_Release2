@@ -56,7 +56,7 @@ public class CustomerSendOtp extends AppCompatActivity {
                 Resend.setVisibility(View.INVISIBLE);
                 String code = entercode.getText().toString().trim();
                 if (code.isEmpty() && code.length() < 6) {
-                    entercode.setError("Enter code");
+                    entercode.setError("Vui lòng nhập đúng code ");
                     entercode.requestFocus();
                     return;
                 }
@@ -69,7 +69,7 @@ public class CustomerSendOtp extends AppCompatActivity {
             @Override
             public void onTick(long millisUntilFinished) {
                 txt.setVisibility(View.VISIBLE);
-                txt.setText("Resend Code within " + millisUntilFinished / 1000 + " Seconds");
+                txt.setText("Gửi lại code sau " + millisUntilFinished / 1000 + " giây");
             }
 
             @Override
@@ -91,7 +91,7 @@ public class CustomerSendOtp extends AppCompatActivity {
                     @Override
                     public void onTick(long millisUntilFinished) {
                         txt.setVisibility(View.VISIBLE);
-                        txt.setText("Resend Code within " + millisUntilFinished / 1000 + " Seconds");
+                        txt.setText("Gửi lại code sau " + millisUntilFinished / 1000 + " giây");
                     }
 
                     @Override
@@ -129,7 +129,7 @@ public class CustomerSendOtp extends AppCompatActivity {
                                 startActivity(intent);
                                 finish();
                             } else {
-                                ReusableCodeForAll.ShowAlert(CustomerSendOtp.this, "Error", task.getException().getMessage());
+                                ReusableCodeForAll.ShowAlert(CustomerSendOtp.this, "Lỗi", task.getException().getMessage());
                             }
                         }
                     });

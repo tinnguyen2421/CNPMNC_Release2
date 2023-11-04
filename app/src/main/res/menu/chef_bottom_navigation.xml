@@ -4,25 +4,25 @@
     <item
         android:id="@+id/chefHome"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="Home" />
+        android:title="Trang chủ" />
 
 
     <item
         android:id="@+id/PendingOrders"
         android:icon="@drawable/ic_neworder"
-        android:title="Pending Orders" />
+        android:title="Đơn hàng đang chờ" />
 
 
     <item
         android:id="@+id/Orders"
         android:icon="@drawable/ic_content_paste_black_24dp"
-        android:title="Orders" />
+        android:title="Đơn hàng" />
 
 
     <item
-        android:id="@+id/chefProfile"
+        android:id="@+id/ChefPostDish"
         android:icon="@drawable/ic_dish_spoon_knife"
-        android:title="Post Dish" />
+        android:title="Đăng món" />
 
 
 </menu>

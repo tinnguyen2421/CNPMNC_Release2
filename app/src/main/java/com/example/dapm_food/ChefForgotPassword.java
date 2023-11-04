@@ -2,6 +2,7 @@ package com.example.dapm_food;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 
@@ -18,6 +19,7 @@ public class ChefForgotPassword extends AppCompatActivity {
     TextInputLayout forgetpassword;
     Button Reset;
     FirebaseAuth FAuth;
+    String pgp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,32 +28,59 @@ public class ChefForgotPassword extends AppCompatActivity {
 
         forgetpassword = (TextInputLayout) findViewById(R.id.Emailid);
         Reset = (Button) findViewById(R.id.button2);
-
+        pgp = forgetpassword.getEditText().getText().toString().trim();
         FAuth = FirebaseAuth.getInstance();
-        Reset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                final ProgressDialog mDialog = new ProgressDialog(ChefForgotPassword.this);
-                mDialog.setCancelable(false);
-                mDialog.setCanceledOnTouchOutside(false);
-                mDialog.setMessage("Đang đăng nhập...");
-                mDialog.show();
 
-                FAuth.sendPasswordResetEmail(forgetpassword.getEditText().getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            mDialog.dismiss();
-                            ReusableCodeForAll.ShowAlert(ChefForgotPassword.this, "", "Mật khẩu đã được gửi đến Email của bạn");
-                        } else {
-                            mDialog.dismiss();
-                            ReusableCodeForAll.ShowAlert(ChefForgotPassword.this, "Lỗi", task.getException().getMessage());
-                        }
+            Reset.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if (isvalid()) {
+                        final ProgressDialog mDialog = new ProgressDialog(ChefForgotPassword.this);
+                        mDialog.setCancelable(false);
+                        mDialog.setCanceledOnTouchOutside(false);
+                        mDialog.setMessage("Đang thực hiện...");
+                        mDialog.show();
+
+                        FAuth.sendPasswordResetEmail(forgetpassword.getEditText().getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    mDialog.dismiss();
+                                    ReusableCodeForAll.ShowAlert(ChefForgotPassword.this, "", "Mật khẩu đã được gửi đến Email của bạn");
+                                } else {
+                                    mDialog.dismiss();
+                                    ReusableCodeForAll.ShowAlert(ChefForgotPassword.this, "Lỗi", task.getException().getMessage());
+                                }
+                            }
+                        });
                     }
-                });
-            }
-        });
+                }
+            });
 
+        }
+
+    public boolean isvalid() {
+        forgetpassword.setErrorEnabled(false);
+        forgetpassword.setError("");
+        boolean isValidEmail = false,isvalid = false;
+        if (TextUtils.isEmpty(pgp)) {
+            forgetpassword.setErrorEnabled(true);
+            forgetpassword.setError("Email không được để trống");
+        }
+        else {
+            if (pgp.matches(emailpattern))
+            {
+                isValidEmail=true;
+            }
+            else {
+                forgetpassword.setErrorEnabled(true);
+                forgetpassword.setError("Email không hợp lệ");
+            }
+        }
+        isvalid = (isValidEmail) ? true : false;
+        return isvalid;
     }
+    String emailpattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 }

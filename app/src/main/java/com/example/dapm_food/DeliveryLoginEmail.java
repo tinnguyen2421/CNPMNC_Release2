@@ -1,8 +1,5 @@
 package com.example.dapm_food;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -52,7 +50,7 @@ public class DeliveryLoginEmail extends AppCompatActivity {
                     final ProgressDialog mDialog = new ProgressDialog(DeliveryLoginEmail.this);
                     mDialog.setCanceledOnTouchOutside(false);
                     mDialog.setCancelable(false);
-                    mDialog.setMessage("Logging in...");
+                    mDialog.setMessage("Đang đăng nhập...");
                     mDialog.show();
                     FAuth.signInWithEmailAndPassword(em, pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
 
@@ -63,20 +61,20 @@ public class DeliveryLoginEmail extends AppCompatActivity {
                                 mDialog.dismiss();
                                 if (FAuth.getCurrentUser().isEmailVerified()) {
                                     mDialog.dismiss();
-                                    Toast.makeText(DeliveryLoginEmail.this, "You are logged in", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(DeliveryLoginEmail.this, "Bạn đã đăng nhập", Toast.LENGTH_SHORT).show();
                                     Intent z = new Intent(DeliveryLoginEmail.this, Delivery_FoodPanelBottomNavigation.class);
                                     startActivity(z);
                                     finish();
 
 
                                 } else {
-                                    ReusableCodeForAll.ShowAlert(DeliveryLoginEmail.this, "", "Please Verify your Email");
+                                    ReusableCodeForAll.ShowAlert(DeliveryLoginEmail.this, "", "Vui lòng xác nhận email của bạn");
                                 }
 
                             } else {
 
                                 mDialog.dismiss();
-                                ReusableCodeForAll.ShowAlert(DeliveryLoginEmail.this, "Error", task.getException().getMessage());
+                                ReusableCodeForAll.ShowAlert(DeliveryLoginEmail.this, "Lỗi", task.getException().getMessage());
                             }
                         }
                     });
@@ -127,19 +125,19 @@ public class DeliveryLoginEmail extends AppCompatActivity {
         boolean isvalidemail = false, isvalidpassword = false, isvalid = false;
         if (TextUtils.isEmpty(em)) {
             email.setErrorEnabled(true);
-            email.setError("Email is required");
+            email.setError("Email không được để trống");
         } else {
             if (em.matches(emailpattern)) {
                 isvalidemail = true;
             } else {
                 email.setErrorEnabled(true);
-                email.setError("Enter a valid Email Address");
+                email.setError("Email không tồn tại");
             }
 
         }
         if (TextUtils.isEmpty(pwd)) {
             pass.setErrorEnabled(true);
-            pass.setError("Password is required");
+            pass.setError("Mật khẩu đang để trống");
         } else {
             isvalidpassword = true;
         }

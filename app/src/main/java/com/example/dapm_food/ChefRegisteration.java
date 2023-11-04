@@ -1,9 +1,5 @@
 package com.example.dapm_food;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,7 +11,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -31,17 +29,17 @@ import java.util.HashMap;
 
 public class ChefRegisteration extends AppCompatActivity {
 
-    String[] Maharashtra = {"Mumbai", "Pune", "Aurangabad"};
-    String[] Gujarat = {"Ahemdabad", "Rajkot", "Surat"};
+    String[] TP_HCM = {"Q1", "Q2", "Q3","Q4","Q5","Q6","Q7","Q8","Q9","Q10","Q11","Q12","Q.TânBình","Q.BìnhTân","Q.PhúNhuận","Q.BìnhThạnh"};
+    String[] TP_HàNội = {"Q_HoànKiếm", "Q.BaĐình", "Q_ĐốngĐa"};
+    String[] TiềnGiang = {"H_ChợGạo", "H_TânPhúĐông", "H_GòCông"};
 
 
-    String[] Mumbai = {"Churchgate", "Marine Lines", "Charni Road", "Grant Road", "Mumbai Central", "Mahalakshmi", "Lower Parel", "Prabhadevi",
-            "Dadar", "Matunga", "Mahim", "Bandra", "Khar", "Santacruz", "Vile Parle", "Andheri", "Jogeshwari", "Ram Mandir",
-            "Goregaon", "Malad", "Kandivai", "Borivali", "Dahisar", "MiraRoad", "Bhayander", "Naigaon", "Vasai Road", "Nalla Sopara", "Virar"};
+    String[] Q1 = {"P_BếnNghé", "P_BếnThành", "P_CôGiang", "P_CầuKho", "P_CầuÔngLãnh", "P_NguyễnCưTrinh", "P_NguyễnTháiBình", "P_PhạmNgũLão",
+            "P_TânĐịnh", "P_ĐaKao"};
 
 
-    String[] Pune = {"Hinjewadi", "Wagholi", " Ambegaon", "Undri", "Katraj"};
-    String[] Aurangabad = {"Aarif Colony", "Baiji Pura", "Balaji Nagar", "Angoori Bagh"};
+    String[] Q2 = {"P_AnKhánh", "P_AnLợiĐông", " P_AnPhú", "P_BìnhAn", "P_BìnhKhánh","P_BìnhTrưngĐông","P_BìnhTrưngTây","P_CátLái","P_ThạnhMỹLợi","P_ThảoĐiền","P_ThủThiêm"};
+    String[] Q3 = {"P_1", "P_2", "P_3", "P_4", "P_5", "P_9", "P_10", "P_11", "P_12", "P_13", "P_14"};
 
     TextInputLayout Fname, Lname, Email, Pass, cfpass, mobileno, houseno, area, postcode;
     Spinner statespin, Cityspin, Suburban;
@@ -86,25 +84,35 @@ public class ChefRegisteration extends AppCompatActivity {
         Emaill = (Button) findViewById(R.id.emaill);
         Phone = (Button) findViewById(R.id.phone);
         Cpp = (CountryCodePicker) findViewById(R.id.CountryCode);
-
+        Cpp.setDefaultCountryUsingNameCode("VN");
+        Cpp.resetToDefaultCountry();
 
         statespin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Object value = parent.getItemAtPosition(position);
                 statee = value.toString().trim();
-                if (statee.equals("Maharashtra")) {
+                if (statee.equals("TP_HCM")) {
                     ArrayList<String> list = new ArrayList<>();
-                    for (String text : Maharashtra) {
+                    for (String text : TP_HCM) {
                         list.add(text);
                     }
                     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ChefRegisteration.this, android.R.layout.simple_spinner_item, list);
 
                     Cityspin.setAdapter(arrayAdapter);
                 }
-                if (statee.equals("Gujarat")) {
+                if (statee.equals("TP_HàNội")) {
                     ArrayList<String> list = new ArrayList<>();
-                    for (String text : Gujarat) {
+                    for (String text : TP_HàNội) {
+                        list.add(text);
+                    }
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ChefRegisteration.this, android.R.layout.simple_spinner_item, list);
+
+                    Cityspin.setAdapter(arrayAdapter);
+                }
+                if (statee.equals("TiềnGiang")) {
+                    ArrayList<String> list = new ArrayList<>();
+                    for (String text : TiềnGiang) {
                         list.add(text);
                     }
                     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ChefRegisteration.this, android.R.layout.simple_spinner_item, list);
@@ -125,27 +133,27 @@ public class ChefRegisteration extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Object value = parent.getItemAtPosition(position);
                 cityy = value.toString().trim();
-                if (cityy.equals("Mumbai")) {
+                if (cityy.equals("Q1")) {
                     ArrayList<String> listt = new ArrayList<>();
-                    for (String text : Mumbai) {
+                    for (String text : Q1) {
                         listt.add(text);
                     }
                     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ChefRegisteration.this, android.R.layout.simple_spinner_item, listt);
                     Suburban.setAdapter(arrayAdapter);
                 }
 
-                if (cityy.equals("Pune")) {
+                if (cityy.equals("Q2")) {
                     ArrayList<String> listt = new ArrayList<>();
-                    for (String text : Pune) {
+                    for (String text : Q2) {
                         listt.add(text);
                     }
                     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ChefRegisteration.this, android.R.layout.simple_spinner_item, listt);
                     Suburban.setAdapter(arrayAdapter);
                 }
 
-                if (cityy.equals("Aurangabad")) {
+                if (cityy.equals("Q3")) {
                     ArrayList<String> listt = new ArrayList<>();
-                    for (String text : Aurangabad) {
+                    for (String text : Q3) {
                         listt.add(text);
                     }
                     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ChefRegisteration.this, android.R.layout.simple_spinner_item, listt);
@@ -164,6 +172,32 @@ public class ChefRegisteration extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Object value = parent.getItemAtPosition(position);
                 suburban = value.toString().trim();
+                if (suburban.equals("P_BếnNghé")) {
+                    ArrayList<String> listt = new ArrayList<>();
+                    for (String text : Q1) {
+                        listt.add(text);
+                    }
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ChefRegisteration.this, android.R.layout.simple_spinner_item, listt);
+                    Suburban.setAdapter(arrayAdapter);
+                }
+
+                if (Suburban.equals("P_AnKhánh")) {
+                    ArrayList<String> listt = new ArrayList<>();
+                    for (String text : Q2) {
+                        listt.add(text);
+                    }
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ChefRegisteration.this, android.R.layout.simple_spinner_item, listt);
+                    Suburban.setAdapter(arrayAdapter);
+                }
+
+                if (Suburban.equals("P_1")) {
+                    ArrayList<String> listt = new ArrayList<>();
+                    for (String text : Q3) {
+                        listt.add(text);
+                    }
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ChefRegisteration.this, android.R.layout.simple_spinner_item, listt);
+                    Suburban.setAdapter(arrayAdapter);
+                }
             }
 
             @Override
@@ -196,7 +230,7 @@ public class ChefRegisteration extends AppCompatActivity {
                     final ProgressDialog mDialog = new ProgressDialog(ChefRegisteration.this);
                     mDialog.setCancelable(false);
                     mDialog.setCanceledOnTouchOutside(false);
-                    mDialog.setMessage("Registering please wait...");
+                    mDialog.setMessage("Đang đăng kí, vui lòng đợi !");
                     mDialog.show();
 
                     FAuth.createUserWithEmailAndPassword(emailid, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -237,7 +271,7 @@ public class ChefRegisteration extends AppCompatActivity {
                                                             public void onComplete(@NonNull Task<Void> task) {
                                                                 if (task.isSuccessful()) {
                                                                     AlertDialog.Builder builder = new AlertDialog.Builder(ChefRegisteration.this);
-                                                                    builder.setMessage("Registered Successfully,Please Verify your Email");
+                                                                    builder.setMessage("Đăng kí thành công, hãy xác nhận email của bạn");
                                                                     builder.setCancelable(false);
                                                                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                                                         @Override
@@ -270,7 +304,7 @@ public class ChefRegisteration extends AppCompatActivity {
 
                             } else {
                                 mDialog.dismiss();
-                                ReusableCodeForAll.ShowAlert(ChefRegisteration.this, "Error", task.getException().getMessage());
+                                ReusableCodeForAll.ShowAlert(ChefRegisteration.this, "Lỗi", task.getException().getMessage());
                             }
 
                         }
@@ -286,7 +320,7 @@ public class ChefRegisteration extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(ChefRegisteration.this, ChefLogin.class);
+                Intent i = new Intent(ChefRegisteration.this, ChefLoginEmail.class);
                 startActivity(i);
                 finish();
             }
@@ -330,76 +364,101 @@ public class ChefRegisteration extends AppCompatActivity {
         boolean isValidname = false, isValidemail = false, isvalidpassword = false, isvalidconfirmpassword = false, isvalid = false, isvalidmobileno = false, isvalidlname = false, isvalidhousestreetno = false, isvalidarea = false, isvalidpostcode = false;
         if (TextUtils.isEmpty(fname)) {
             Fname.setErrorEnabled(true);
-            Fname.setError("Firstname is required");
+            Fname.setError("Họ và tên lót của bạn không được để trống");
         } else {
-            isValidname = true;
+            if (fname.length() > 30) {
+                Fname.setErrorEnabled(true);
+                Fname.setError("Họ và tên lót không vượt quá 30 ký tự");
+            } else if (fname.length() < 3){
+                Fname.setErrorEnabled(true);
+                Fname.setError("Họ và tên lót phải lớn hơn 3 ký tự");
+            }
+            else {
+                isvalidmobileno = true;
+            }
         }
         if (TextUtils.isEmpty(lname)) {
             Lname.setErrorEnabled(true);
-            Lname.setError("Lastname is required");
+            Lname.setError("Tên của bạn không được để trống");
         } else {
-            isvalidlname = true;
+            if (lname.length() > 30) {
+                Lname.setErrorEnabled(true);
+                Lname.setError("Tên không vượt quá 30 ký tự");
+            } else if (lname.length() < 3){
+                Lname.setErrorEnabled(true);
+                Lname.setError("Tên phải lớn hơn 3 ký tự");
+            }
+            else {
+                isvalidmobileno = true;
+            }
         }
         if (TextUtils.isEmpty(emailid)) {
             Email.setErrorEnabled(true);
-            Email.setError("Email is required");
+            Email.setError("Email không được để trống");
         } else {
             if (emailid.matches(emailpattern)) {
                 isValidemail = true;
             } else {
                 Email.setErrorEnabled(true);
-                Email.setError("Enter a valid Email Address");
+                Email.setError("Hãy nhập địa chỉ chính xác !!!");
             }
 
         }
         if (TextUtils.isEmpty(password)) {
             Pass.setErrorEnabled(true);
-            Pass.setError("Password is required");
+            Pass.setError("Mật khẩu không được để trống ");
         } else {
             if (password.length() < 6) {
                 Pass.setErrorEnabled(true);
-                Pass.setError("password too weak");
+                Pass.setError("Mật khẩu quá yếu ! Hãy nhặp mật khẩu lớn hơn 6 ký tự");
+            } else if (password.length() < 14) {
+                Pass.setErrorEnabled(true);
+                Pass.setError("Mật khẩu không được dài hơn 14 ký tự");
+                
             } else {
                 isvalidpassword = true;
             }
         }
         if (TextUtils.isEmpty(confirmpassword)) {
             cfpass.setErrorEnabled(true);
-            cfpass.setError("Confirm Password is required");
+            cfpass.setError("Xác nhận mật khẩu không được để trống");
         } else {
             if (!password.equals(confirmpassword)) {
-                Pass.setErrorEnabled(true);
-                Pass.setError("Password doesn't match");
+                cfpass.setErrorEnabled(true);
+                cfpass.setError("Mật khẩu không khớp");
             } else {
                 isvalidconfirmpassword = true;
             }
         }
         if (TextUtils.isEmpty(mobile)) {
             mobileno.setErrorEnabled(true);
-            mobileno.setError("Mobile number is required");
+            mobileno.setError("Số điện thoại không được để trống");
         } else {
             if (mobile.length() < 10) {
                 mobileno.setErrorEnabled(true);
-                mobileno.setError("Invalid mobile number");
-            } else {
-                isvalidmobileno = true;
+                mobileno.setError("Số điện thoại không tồn tại");
+            } else if (mobile.length() > 11) {
+                mobileno.setErrorEnabled(true);
+                mobileno.setError("Số điện thoại không tồn tại");
             }
-        }
+            else {isvalidmobileno = true;}
+            }
+        
         if (TextUtils.isEmpty(house)) {
             houseno.setErrorEnabled(true);
-            houseno.setError("Field cannot be empty");
+            houseno.setError("Trường này không được để trống");
         } else {
             isvalidhousestreetno = true;
         }
         if (TextUtils.isEmpty(Area)) {
             area.setErrorEnabled(true);
-            area.setError("Field cannot be empty");
+            area.setError("Trường này không được để trống");
         } else {
             isvalidarea = true;
         }
         if (TextUtils.isEmpty(Postcode)) {
             postcode.setErrorEnabled(true);
-            postcode.setError("Field cannot be empty");
+            postcode.setError("Trường này không được để trống");
         } else {
             isvalidpostcode = true;
         }

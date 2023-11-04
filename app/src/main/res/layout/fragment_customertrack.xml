@@ -18,7 +18,7 @@
         android:inputType="textMultiLine"
         android:outlineProvider="background"
         android:paddingLeft="15dp"
-        android:text="Address"
+        android:text="Địa chỉ"
         android:textColor="@color/Black"
         android:textSize="26dp"
         android:visibility="invisible" />
@@ -27,7 +27,7 @@
     <TextView
         android:id="@+id/status"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@id/addresstrack"
         android:layout_marginTop="5dp"
         android:background="@color/white"
@@ -39,7 +39,7 @@
         android:paddingTop="8dp"
         android:paddingRight="15dp"
         android:paddingBottom="8dp"
-        android:text="Status"
+        android:text="Trạng thái"
         android:textAllCaps="false"
         android:textColor="@color/Red"
         android:textSize="20sp" />
@@ -54,7 +54,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:gravity="center_vertical"
-        android:text="Order"
+        android:text="Đơn hàng"
         android:textAllCaps="true"
         android:textColor="#FA3E03"
         android:textSize="16sp" />
@@ -97,7 +97,7 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="15dp"
                 android:gravity="center_vertical"
-                android:text="Grand Total:"
+                android:text="Tổng cộng:"
                 android:textColor="#000000"
                 android:textSize="20dp"
                 android:textStyle="bold" />

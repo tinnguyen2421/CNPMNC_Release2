@@ -35,7 +35,7 @@
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             android:fontFamily="@font/caudex"
-            android:text="Find homemade food around you or offer your own !"
+            android:text="Tìm những món ăn ngon xung quanh bạn hoặc đăng lên những món ăn của bạn!!"
             android:textAlignment="center"
             android:textColor="@color/Black"
             android:textSize="17dp" />
@@ -43,33 +43,33 @@
 
         <Button
             android:id="@+id/chef"
-            android:layout_width="200dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:backgroundTint="#FA3E03"
-            android:text="Connect as Chef"
+            android:text="Bạn là chủ cửa hàng "
             android:textColor="@color/white" />
 
         <Button
             android:id="@+id/customer"
-            android:layout_width="200dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:backgroundTint="#FA3E03"
-            android:text="Connect as Customer"
+            android:text="Bạn là khách hàng"
             android:textColor="@color/white" />
 
         <Button
             android:id="@+id/delivery"
-            android:layout_width="200dp"
+            android:layout_width="220dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="30dp"
             android:backgroundTint="#FA3E03"
-            android:text="Connect as Delivery person"
+            android:text="Bạn là Người giao hàng"
             android:textColor="@color/white" />
 
     </LinearLayout>

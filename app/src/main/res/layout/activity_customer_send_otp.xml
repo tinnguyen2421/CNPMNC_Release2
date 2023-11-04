@@ -29,13 +29,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nhập OTP"
+            android:textSize="20sp"
+            android:textColor="@color/DarkBlue"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:fontFamily="monospace"
+            android:textStyle="italic"/>
         <EditText
             android:id="@+id/phoneno"
             android:layout_width="match_parent"
             android:layout_height="71dp"
             android:ems="10"
             android:inputType="number"
+            android:hint="OTP"
             android:layout_marginTop="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="26dp"
-            android:background="@drawable/btnred"
+            android:background="@drawable/btnblueish"
             android:text="Xác minh"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"

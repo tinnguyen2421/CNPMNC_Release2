@@ -54,7 +54,7 @@ public class CustomerLoginEmail extends AppCompatActivity {
                         final ProgressDialog mDialog = new ProgressDialog(CustomerLoginEmail.this);
                         mDialog.setCanceledOnTouchOutside(false);
                         mDialog.setCancelable(false);
-                        mDialog.setMessage("Logging in...");
+                        mDialog.setMessage("Đang đăng nhập...");
                         mDialog.show();
                         FAuth.signInWithEmailAndPassword(em, pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
 
@@ -63,12 +63,12 @@ public class CustomerLoginEmail extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     mDialog.dismiss();
                                     if (FAuth.getCurrentUser().isEmailVerified()) {
-                                        Toast.makeText(CustomerLoginEmail.this, "You are logged in", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(CustomerLoginEmail.this, "Bạn đã đăng nhập thành công", Toast.LENGTH_SHORT).show();
                                         Intent z = new Intent(CustomerLoginEmail.this, CustomerFoodPanel_BottomNavigation.class);
                                         startActivity(z);
                                         finish();
                                     } else {
-                                        ReusableCodeForAll.ShowAlert(CustomerLoginEmail.this,"","Please Verify your Email");
+                                        ReusableCodeForAll.ShowAlert(CustomerLoginEmail.this,"","Vui lòng xác nhận email của bạn");
                                     }
 
                                 } else {
@@ -124,7 +124,7 @@ public class CustomerLoginEmail extends AppCompatActivity {
         if (TextUtils.isEmpty(em))
         {
             email.setErrorEnabled(true);
-            email.setError("Email is required");
+            email.setError("Email không được để trống");
         }
         else {
             if (em.matches(emailpattern))
@@ -133,14 +133,14 @@ public class CustomerLoginEmail extends AppCompatActivity {
             }
             else {
                 email.setErrorEnabled(true);
-                email.setError("Enter a valid Email Address");
+                email.setError("Email không hợp lệ");
             }
 
         }
         if (TextUtils.isEmpty(pwd))
         {
             pass.setErrorEnabled(true);
-            pass.setError("Password is required");
+            pass.setError("Mật khẩu không được để trống");
         }
         else {
             isvalidpassword=true;

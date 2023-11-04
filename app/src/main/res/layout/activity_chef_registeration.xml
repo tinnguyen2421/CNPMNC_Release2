@@ -10,7 +10,7 @@
 
     <ScrollView
         android:layout_width="315dp"
-        android:layout_height="653dp"
+        android:layout_height="660dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -32,7 +32,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             android:orientation="vertical">
 
 
@@ -49,7 +48,8 @@
                     android:hint="Họ và tên"
                     android:drawableLeft="@drawable/blackuser"
                     android:drawablePadding="10dp"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:background="@color/white"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -65,7 +65,8 @@
                     android:hint="Tên người dùng"
                     android:drawableLeft="@drawable/blackuser"
                     android:drawablePadding="10dp"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:background="@color/white"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -80,6 +81,7 @@
                     android:drawableLeft="@drawable/ic_email_black_24dp"
                     android:drawablePadding="10dp"
                     android:hint="Địa chỉ Email"
+                    android:background="@color/white"
                     android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,7 +96,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
+                    android:background="@color/white"
                     android:hint="Mật khẩu"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -110,6 +112,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Xác nhận mật khẩu"
+                    android:background="@color/white"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -136,6 +139,7 @@
                         android:layout_height="wrap_content"
                         android:hint="Số điện thoại"
                         android:inputType="number"
+                        android:background="@color/white"
                         android:drawableLeft="@drawable/blackphone"
                         android:drawablePadding="10dp"/>
                 </com.google.android.material.textfield.TextInputLayout>
@@ -154,6 +158,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Số nhà / đường"
+                    android:background="@color/white"
                     android:drawableLeft="@drawable/blackhouse"
                     android:drawablePadding="10dp"
                     android:inputType="text" />
@@ -169,7 +174,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Area"
+                    android:hint="Địa chỉ cụ thể"
+                    android:background="@color/white"
                     android:inputType="textMultiLine" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -182,7 +188,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Post Code"
+                    android:hint="Mã vùng"
+                    android:background="@color/white"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -192,7 +199,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="Thành phố"
+                android:text="Thành phố/Tỉnh"
                 android:textSize="15dp" />
 
             <Spinner
@@ -207,7 +214,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="Quận"
+                android:text="Quận/Huyện"
                 android:textSize="15dp"
                 android:textColor="@color/black"/>
 
@@ -222,7 +229,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="Suburban"
+                android:text="Phường/Xã"
                 android:textSize="15dp" />
 
             <Spinner
@@ -282,7 +289,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="SignIn with"
+                android:text="Đăng nhập với"
                 android:textAlignment="center"
                 android:textColor="@color/Black"
                 android:textSize="18dp"
@@ -303,8 +310,8 @@
 
                 <Button
                     android:id="@+id/emaill"
-                    android:layout_width="95dp"
-                    android:layout_height="40dp"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
                     android:layout_marginLeft="10dp"
                     android:background="#ff4500"
                     android:drawableLeft="@drawable/whitemail"
@@ -314,14 +321,14 @@
 
                 <Button
                     android:id="@+id/phone"
-                    android:layout_width="97dp"
-                    android:layout_height="40dp"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="10dp"
                     android:background="#ff4500"
                     android:drawableLeft="@drawable/phonewhite"
                     android:drawablePadding="5dp"
-                    android:padding="10dp"
+                    android:padding="1dp"
                     android:text="Phone"
                     android:textColor="@color/white" />
 

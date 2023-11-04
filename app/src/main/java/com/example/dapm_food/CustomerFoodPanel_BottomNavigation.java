@@ -86,9 +86,12 @@ public class CustomerFoodPanel_BottomNavigation extends AppCompatActivity implem
 
         Fragment fragment = null;
         switch (menuItem.getItemId()) {
+
             case R.id.Home:
                 fragment = new CustomerHomeFragment();
                 break;
+
+
 
 
             case R.id.Cart:
@@ -103,10 +106,10 @@ public class CustomerFoodPanel_BottomNavigation extends AppCompatActivity implem
                 fragment = new CustomerTrackFragment();
                 break;
 
+
             case R.id.Profile:
                 fragment = new CustomerProfileFragment();
                 break;
-
         }
         return loadFragment(fragment);
     }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/loginbackground"
-    tools:context="com.example.dapm_food.Delivery_registeration">
+    tools:context="com.example.dapm_food.DeliveryRegisteration">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:background="@drawable/background_shape"
+        android:background="@drawable/nen1"
         android:orientation="vertical"
         android:padding="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -43,7 +43,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="FirstName"
+                    android:hint="Họ và tên lót"
+                    android:background="@color/white"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -56,7 +57,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="LastName"
+                    android:hint="Tên"
+                    android:background="@color/white"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,7 +73,8 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_email_black_24dp"
                     android:drawablePadding="10dp"
-                    android:hint="Email id"
+                    android:hint="Email "
+                    android:background="@color/white"
                     android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -86,7 +89,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Password"
+                    android:hint="Mật khẩu"
+                    android:background="@color/white"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,7 +104,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Confirm Password"
+                    android:hint="Xác nhận mật khẩu"
+                    android:background="@color/white"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -123,7 +128,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Mobile number"
+                        android:hint="Số điện thoại"
+                        android:background="@color/white"
                         android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -138,7 +144,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="House/Street no"
+                    android:hint="Đường/ số nhà"
+                    android:background="@color/white"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -152,7 +159,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Area"
+                    android:hint="Khu vực"
+                    android:background="@color/white"
                     android:inputType="textMultiLine" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -165,7 +173,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Post Code"
+                    android:hint="Mã vùng"
+                    android:background="@color/white"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -175,7 +184,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="State"
+                android:text="Tỉnh/Thành phố"
                 android:textSize="15dp" />
 
             <Spinner
@@ -190,7 +199,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="City"
+                android:text="Quận/ huyện"
                 android:textSize="15dp" />
 
             <Spinner
@@ -204,7 +213,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="Suburban"
+                android:text="Phường/Xã"
                 android:textSize="15dp" />
 
             <Spinner
@@ -222,7 +231,7 @@
                 android:background="@drawable/button_shape"
                 android:textColor="@color/white"
                 android:textAllCaps="true"
-                android:text="Register"
+                android:text="Đăng kí"
                 android:textSize="15dp" />
 
             <LinearLayout
@@ -245,7 +254,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="7dp"
-                    android:text="OR"
+                    android:text="Hoặc"
                     android:textAlignment="center"
                     android:textColor="@color/Black"
                     android:textSize="17dp" />
@@ -264,7 +273,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="SignIn with"
+                android:text="Đăng nhập với"
                 android:textAlignment="center"
                 android:textColor="#FA3E03"
                 android:textSize="18dp"
@@ -284,8 +293,8 @@
 
                 <Button
                     android:id="@+id/emaillid"
-                    android:layout_width="95dp"
-                    android:layout_height="40dp"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
                     android:layout_marginLeft="15dp"
                     android:background="@drawable/btnred"
                     android:drawableLeft="@drawable/whitemail"
@@ -303,7 +312,7 @@
                     android:drawableLeft="@drawable/phonewhite"
                     android:drawablePadding="5dp"
                     android:padding="10dp"
-                    android:text="Phone"
+                    android:text="Số điện thoại"
                     android:textColor="@color/white"  />
 
 

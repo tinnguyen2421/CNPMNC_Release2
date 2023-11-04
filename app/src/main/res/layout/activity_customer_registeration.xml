@@ -50,6 +50,7 @@
                     android:layout_height="wrap_content"
                     android:drawablePadding="10dp"
                     android:hint="Họ và tên lót"
+                    android:background="@color/white"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -72,6 +73,7 @@
                     android:layout_height="wrap_content"
                     android:drawablePadding="10dp"
                     android:hint="Tên"
+                    android:background="@color/white"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,6 +96,7 @@
                     android:drawableLeft="@drawable/ic_email_black_24dp"
                     android:drawablePadding="10dp"
                     android:hint="Email "
+                    android:background="@color/white"
                     android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -117,6 +120,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Số điện thoại"
+                        android:background="@color/white"
                         android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -140,6 +144,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Mật khẩu"
+                    android:background="@color/white"
                     android:inputType="textPassword"
                     android:paddingTop="10dp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -161,6 +166,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="38dp"
+                    android:background="@color/white"
                     android:hint="Xác nhận mật khẩu"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -184,6 +190,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="10dp"
+                    android:background="@color/white"
                     android:hint="Địa chỉ thường trú"
                     android:inputType="textMultiLine" />
             </com.google.android.material.textfield.TextInputLayout>

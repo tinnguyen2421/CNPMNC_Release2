@@ -1,66 +1,161 @@
 package com.example.dapm_food.CustomerFoodPanel;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import com.example.dapm_food.ChefFoodPanel.UpdateDishModel;
+import com.example.dapm_food.Customer;
 import com.example.dapm_food.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CustomerHomeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class CustomerHomeFragment extends Fragment {
+import java.util.ArrayList;
+import java.util.List;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class CustomerHomeFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
-    public CustomerHomeFragment() {
-        // Required empty public constructor
+    RecyclerView recyclerView;
+    private List<UpdateDishModel> updateDishModelList;
+    private CustomerHomeAdapter adapter;
+    String State, City, Sub;
+    DatabaseReference dataaa, databaseReference;
+    SwipeRefreshLayout swipeRefreshLayout;
+    SearchView searchView;
+
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_customerhome, null);
+        getActivity().setTitle("Giờ ăn đến rồi");
+        setHasOptionsMenu(true);
+        recyclerView = v.findViewById(R.id.recycle_menu);
+        recyclerView.setHasFixedSize(true);
+        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.move);
+        recyclerView.startAnimation(animation);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        updateDishModelList = new ArrayList<>();
+        swipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipelayout);
+        swipeRefreshLayout.setOnRefreshListener(this);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimaryDark, R.color.green);
+
+
+        swipeRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                swipeRefreshLayout.setRefreshing(true);
+                String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                dataaa = FirebaseDatabase.getInstance().getReference("Customer").child(userid);
+                dataaa.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Customer cust = dataSnapshot.getValue(Customer.class);
+                        State = cust.getState();
+                        City = cust.getCity();
+                        Sub = cust.getSuburban();
+                        customermenu();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        });
+
+        return v;
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CustomerHomeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CustomerHomeFragment newInstance(String param1, String param2) {
-        CustomerHomeFragment fragment = new CustomerHomeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public void onRefresh() {
+
+        customermenu();
+    }
+
+    private void customermenu() {
+
+        swipeRefreshLayout.setRefreshing(true);
+        databaseReference = FirebaseDatabase.getInstance().getReference("FoodSupplyDetails").child(State).child(City).child(Sub);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                updateDishModelList.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                        UpdateDishModel updateDishModel = snapshot1.getValue(UpdateDishModel.class);
+                        updateDishModelList.add(updateDishModel);
+                    }
+                }
+                adapter = new CustomerHomeAdapter(getContext(), updateDishModelList);
+                recyclerView.setAdapter(adapter);
+                swipeRefreshLayout.setRefreshing(false);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                search(newText);
+                return true;
+            }
+        });
+
+    }
+
+    private void search(final String searchtext) {
+
+        ArrayList<UpdateDishModel> mylist = new ArrayList<>();
+        for (UpdateDishModel object : updateDishModelList) {
+            if (object.getDishes().toLowerCase().contains(searchtext.toLowerCase())) {
+                mylist.add(object);
+            }
         }
+        adapter = new CustomerHomeAdapter(getContext(), mylist);
+        recyclerView.setAdapter(adapter);
+
     }
 
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_customerhome, container, false);
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.search, menu);
+        MenuItem menuItem = menu.findItem(R.id.Searchdish);
+        searchView = (SearchView) menuItem.getActionView();
+        searchView.setQueryHint("Tìm món ăn ");
+
+
     }
 }
